@@ -266,6 +266,7 @@ angular.module('colorpicker.module', [])
         restrict: 'A',
         link: function ($scope, elem, attrs, ngModel) {
           var
+              onFocusBlur = attrs.onFocusBlur === 'true' ? true : false,
               thisFormat = attrs.colorpicker ? attrs.colorpicker : 'hex',
               position = angular.isDefined(attrs.colorpickerPosition) ? attrs.colorpickerPosition : 'bottom',
               inline = angular.isDefined(attrs.colorpickerInline) ? attrs.colorpickerInline : false,
@@ -395,6 +396,16 @@ angular.module('colorpicker.module', [])
           elem.on('blur keyup change', function() {
             update();
           });
+            
+          if (onFocusBlur) {
+            elem.on('focus', function () {
+              showColorpickerTemplate();
+            });
+
+            elem.on('blur', function () {
+              hideColorpickerTemplate();
+            });
+          }
 
           elem.on('$destroy', function() {
             colorpickerTemplate.remove();
