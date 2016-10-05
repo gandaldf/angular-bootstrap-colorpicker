@@ -98,6 +98,11 @@ Customize a size of the color picker saturation panel
 <input colorpicker colorpicker-size="200" type="text" ng-model="your_model" />
 ```
 
+Open the color picker on focus event and close it on blur event
+```html
+<input colorpicker on-focus-blur="true" type="text" ng-model="your_model" />
+```
+
 Events:
 ===============================
 
